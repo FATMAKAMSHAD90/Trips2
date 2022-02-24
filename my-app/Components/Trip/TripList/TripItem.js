@@ -16,7 +16,7 @@ const TripItem = ({ navigation, trip }) => {
               style={{ height: 250, width: 250, margin: 50 }}
             />
           </Box>
-          <Text>{trip.title}</Text>
+          <Text style={{ fontSize: 20 }}>{trip.title}</Text>
         </Center>
       </Pressable>
     </SafeAreaView>

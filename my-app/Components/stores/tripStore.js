@@ -1,11 +1,16 @@
-import { makeAutoObservable } from "mobx";
+import { makeObservable, observable, action, configure } from "mobx";
 import api from "./api";
 
 class TripStore {
-  constructor() {
-    makeAutoObservable(this);
-  }
   trips = [];
+
+  constructor() {
+    makeObservable(this, {
+      fetchTrips: action,
+      createTrips: action,
+      // deleteTrips: action,
+    });
+  }
 
   fetchTrips = async () => {
     try {
@@ -16,8 +21,18 @@ class TripStore {
       console.log(error);
     }
   };
-}
+  createTrips = async (newTrip, navigation) => {
+    try {
+      const response = await api.post("/trips", newTrip);
+      this.trips.push(response.data);
 
+      navigation.goBack();
+    } catch (error) {
+      console.log(error);
+      alert(error.message);
+    }
+  };
+}
 const tripStore = new TripStore();
 tripStore.fetchTrips();
 export default tripStore;

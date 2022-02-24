@@ -10,6 +10,7 @@ class AuthStore {
   user = null;
 
   setUser = async (token) => {
+    api.defaults.headers.common.Authorization = `Bearer ${token}`;
     await AsyncStorage.setItem("myToken", token);
     this.user = decode(token);
   };

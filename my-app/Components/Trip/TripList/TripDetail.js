@@ -11,7 +11,7 @@ const TripDetail = ({ navigation, route }) => {
     <SafeAreaView>
       <View>
         <Center>
-          <Text>{trip.title}</Text>
+          <Text style={{ fontSize: 20 }}>{trip.title}</Text>
           <Box bg="info.900" shadow={1} rounded="md" maxWidth="90%">
             <Image
               source={{ uri: trip.image }}

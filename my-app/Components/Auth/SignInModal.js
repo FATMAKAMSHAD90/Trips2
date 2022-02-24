@@ -17,8 +17,9 @@ const SignInModal = ({ navigation }) => {
     password: "",
   });
 
-  const handleSubmit = () => {
-    authStore.signIn(user);
+  const handleSubmit = async () => {
+    await authStore.signIn(user);
+    if (authStore.user) navigation.navigate("Home");
   };
   return (
     <Center w="100%">
@@ -40,7 +41,7 @@ const SignInModal = ({ navigation }) => {
           fontWeight="medium"
           size="xs"
         >
-          Sign in to view ypur Trips!
+          Sign in to view your Trips!
         </Heading>
         <VStack space={3} mt="5">
           <FormControl>
@@ -59,6 +60,13 @@ const SignInModal = ({ navigation }) => {
 
           <Button mt="2" colorScheme="blue" onPress={handleSubmit}>
             Sign in
+          </Button>
+          <Button
+            mt="2"
+            colorScheme="blue"
+            onPress={() => navigation.navigate("SignUp")}
+          >
+            Sign up if you are not registered
           </Button>
         </VStack>
       </Box>

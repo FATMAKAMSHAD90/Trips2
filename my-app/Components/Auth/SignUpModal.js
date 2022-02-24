@@ -17,8 +17,9 @@ const SignUpModal = ({ navigation }) => {
     password: "",
   });
 
-  const handleSubmit = () => {
-    authStore.signUp(user);
+  const handleSubmit = async () => {
+    await authStore.signUp(user);
+    if (authStore.user) navigation.navigate("Home");
   };
   return (
     <Center w="100%">
